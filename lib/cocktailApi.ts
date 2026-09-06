@@ -7,8 +7,10 @@ interface CocktailApiResponse {
 
 const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
-export async function getCocktails() {
-  const response = await fetch(`${BASE_URL}/search.php?s=margarita`);
+export async function getCocktails(searchTerm = "margarita") {
+  const response = await fetch(
+    `${BASE_URL}/search.php?s=${encodeURIComponent(searchTerm)}`,
+  );
 
   if (!response.ok) {
     throw new Error("Failed to fetch cocktails");
