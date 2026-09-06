@@ -24,3 +24,45 @@ export async function getCocktails(searchTerm = "margarita") {
 
   return data.drinks.map(mapCocktail);
 }
+
+interface CategoryDTO {
+  strCategory: string;
+}
+
+interface CategoryApiResponse {
+  drinks: CategoryDTO[] | null;
+}
+
+export async function getCategories() {
+  const response = await fetch(`${BASE_URL}/list.php?c=list`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch cocktail categories");
+  }
+
+  const data: CategoryApiResponse = await response.json();
+
+  if (!data.drinks) {
+    return [];
+  }
+
+  return data.drinks.map((category) => category.strCategory);
+}
+
+export async function getCocktailsByCategory(category: string) {
+  const response = await fetch(
+    `${BASE_URL}/filter.php?c=${encodeURIComponent(category)}`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch cocktails by category");
+  }
+
+  const data: CocktailApiResponse = await response.json();
+
+  if (!data.drinks) {
+    return [];
+  }
+
+  return data.drinks.map(mapCocktail);
+}
