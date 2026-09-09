@@ -46,7 +46,15 @@ export default async function Home({ searchParams }: HomeProps) {
         {cocktails.length > 0 ? (
           <CocktailGrid cocktails={cocktails} />
         ) : (
-          <p className="py-8 text-center text-zinc-500">No cocktails found.</p>
+          <div className="rounded-xl border border-zinc-200 bg-white px-6 py-10 text-center shadow-sm">
+            <h2 className="mb-2 text-xl font-semibold text-zinc-900">
+              No cocktails found
+            </h2>
+
+            <p className="text-zinc-600">
+              Try another search or choose a different category.
+            </p>
+          </div>
         )}
       </div>
     </main>
