@@ -66,3 +66,21 @@ export async function getCocktailsByCategory(category: string) {
 
   return data.drinks.map(mapCocktail);
 }
+
+export async function getCocktailById(id: string) {
+  const response = await fetch(
+    `${BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch cocktail");
+  }
+
+  const data: CocktailApiResponse = await response.json();
+
+  if (!data.drinks || data.drinks.length === 0) {
+    return null;
+  }
+
+  return mapCocktail(data.drinks[0]);
+}
