@@ -27,7 +27,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
     <select
       onChange={(event) => handleCategoryChange(event.target.value)}
       defaultValue={searchParams.get("category") ?? ""}
-      className="mb-8 rounded-lg border px-4 py-2"
+      className="mb-8 w-full rounded-lg border border-zinc-300 bg-white px-4 py-2 text-zinc-900 sm:w-auto"
     >
       <option value="">All categories</option>
 

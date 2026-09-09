@@ -31,16 +31,24 @@ export default async function Home({ searchParams }: HomeProps) {
   }
 
   return (
-    <main className="p-8">
-      <h1 className="mb-6 text-3xl font-bold">Cocktails</h1>
+    <main className="min-h-screen bg-zinc-50 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="mb-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
+          Cocktails
+        </h1>
 
-      <SearchBar />
-      <CategoryFilter categories={categories} />
-      {cocktails.length > 0 ? (
-        <CocktailGrid cocktails={cocktails} />
-      ) : (
-        <p>No cocktails found.</p>
-      )}
+        <p className="mb-8 text-zinc-600">
+          Find inspiration for your next cocktail.
+        </p>
+
+        <SearchBar />
+        <CategoryFilter categories={categories} />
+        {cocktails.length > 0 ? (
+          <CocktailGrid cocktails={cocktails} />
+        ) : (
+          <p className="py-8 text-center text-zinc-500">No cocktails found.</p>
+        )}
+      </div>
     </main>
   );
 }

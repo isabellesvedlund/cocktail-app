@@ -8,8 +8,8 @@ interface CocktailCardProps {
 
 export default function CocktailCard({ cocktail }: CocktailCardProps) {
   return (
-    <Link href={`/cocktails/${cocktail.id}`}>
-      <article className="overflow-hidden rounded-xl border bg-white shadow-sm">
+    <Link href={`/cocktails/${cocktail.id}`} className="block h-full">
+      <article className="h-full overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
         <Image
           src={cocktail.image}
           alt={cocktail.name}
@@ -18,8 +18,10 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
           className="aspect-square w-full object-cover"
         />
 
-        <div className="p-4">
-          <h2 className="text-xl font-semibold">{cocktail.name}</h2>
+        <div className="p-4 sm:p-5">
+          <h2 className="text-lg font-semibold text-zinc-900 sm:text-xl">
+            {cocktail.name}
+          </h2>
 
           <p className="mt-1 text-sm text-zinc-500">{cocktail.category}</p>
         </div>
