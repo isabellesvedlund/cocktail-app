@@ -20,46 +20,56 @@ export default async function CocktailDetailPage({
   }
 
   return (
-    <main className="mx-auto max-w-4xl p-8">
-      <Link
-        href="/"
-        className="mb-6 inline-block text-sm font-medium hover:underline"
-      >
-        ← Back to cocktails
-      </Link>
+    <main className="min-h-screen bg-zinc-50 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        <Link
+          href="/"
+          className="mb-6 inline-block text-sm font-medium text-zinc-700 transition hover:text-zinc-900 hover:underline"
+        >
+          ← Back to cocktails
+        </Link>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <div className="relative aspect-square overflow-hidden rounded-lg">
-          <Image
-            src={cocktail.image}
-            alt={cocktail.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
+        <div className="grid gap-8 md:grid-cols-2 md:items-start">
+          <div className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-sm">
+            <Image
+              src={cocktail.image}
+              alt={cocktail.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
 
-        <div>
-          <h1 className="mb-2 text-4xl font-bold">{cocktail.name}</h1>
+          <div>
+            <h1 className="mb-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
+              {cocktail.name}
+            </h1>
 
-          <p className="mb-6 text-gray-600">{cocktail.category}</p>
+            <p className="mb-8 text-zinc-600">{cocktail.category}</p>
 
-          <h2 className="mb-3 text-2xl font-semibold">Ingredients</h2>
+            <h2 className="mb-3 text-xl font-semibold text-zinc-900 sm:text-2xl">
+              Ingredients
+            </h2>
 
-          <ul className="mb-6 space-y-2">
-            {cocktail.ingredients.map((ingredient, index) => (
-              <li key={`${ingredient.name}-${index}`}>
-                {ingredient.measure && (
-                  <span className="font-medium">{ingredient.measure} </span>
-                )}
-                {ingredient.name}
-              </li>
-            ))}
-          </ul>
+            <ul className="mb-8 space-y-2 text-zinc-700">
+              {cocktail.ingredients.map((ingredient, index) => (
+                <li key={`${ingredient.name}-${index}`}>
+                  {ingredient.measure && (
+                    <span className="font-medium text-zinc-900">
+                      {ingredient.measure}{" "}
+                    </span>
+                  )}
+                  {ingredient.name}
+                </li>
+              ))}
+            </ul>
 
-          <h2 className="mb-3 text-2xl font-semibold">Instructions</h2>
+            <h2 className="mb-3 text-xl font-semibold text-zinc-900 sm:text-2xl">
+              Instructions
+            </h2>
 
-          <p className="leading-7">{cocktail.instructions}</p>
+            <p className="leading-7 text-zinc-700">{cocktail.instructions}</p>
+          </div>
         </div>
       </div>
     </main>
