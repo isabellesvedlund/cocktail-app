@@ -1,6 +1,7 @@
 import CategoryFilter from "@/components/CategoryFilter";
 import CocktailGrid from "@/components/CocktailGrid";
 import Header from "@/components/Header";
+import RandomCocktailButton from "@/components/RandomCocktailButton";
 import SearchBar from "@/components/SearchBar";
 import {
   getCategories,
@@ -56,12 +57,16 @@ export default async function Home({ searchParams }: HomeProps) {
           <div className="mt-6 max-w-2xl rounded-2xl border border-white/20 bg-black/25 p-4 shadow-xl backdrop-blur-sm">
             <SearchBar />
 
-            <div className="flex items-center gap-3">
-              <CategoryFilter categories={categories} />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <CategoryFilter categories={categories} />
 
-              <span className="hidden text-xs uppercase tracking-[0.15em] text-white/60 sm:block">
-                Browse by category
-              </span>
+                <span className="hidden text-xs uppercase tracking-[0.15em] text-white/60 md:block">
+                  Browse by category
+                </span>
+              </div>
+
+              <RandomCocktailButton />
             </div>
           </div>
         </div>

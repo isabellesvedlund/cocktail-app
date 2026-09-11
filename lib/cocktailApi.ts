@@ -84,3 +84,19 @@ export async function getCocktailById(id: string) {
 
   return mapCocktail(data.drinks[0]);
 }
+
+export async function getRandomCocktail() {
+  const response = await fetch(`${BASE_URL}/random.php`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch random cocktail");
+  }
+
+  const data: CocktailApiResponse = await response.json();
+
+  if (!data.drinks || data.drinks.length === 0) {
+    return null;
+  }
+
+  return mapCocktail(data.drinks[0]);
+}
