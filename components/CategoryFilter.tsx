@@ -20,22 +20,33 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
       params.delete("category");
     }
 
-    router.push(`/?${params.toString()}`);
+    const query = params.toString();
+    router.push(query ? `/?${query}` : "/");
   }
 
   return (
-    <select
-      onChange={(event) => handleCategoryChange(event.target.value)}
-      defaultValue={searchParams.get("category") ?? ""}
-      className="mb-8 w-full rounded-lg border border-zinc-300 bg-white px-4 py-2 text-zinc-900 sm:w-auto"
-    >
-      <option value="">All categories</option>
+    <div className="w-full sm:max-w-64">
+      <label
+        htmlFor="category-filter"
+        className="mb-2 block text-xs font-medium uppercase tracking-[0.18em] text-white/60"
+      >
+        Category
+      </label>
 
-      {categories.map((category) => (
-        <option key={category} value={category}>
-          {category}
-        </option>
-      ))}
-    </select>
+      <select
+        id="category-filter"
+        onChange={(event) => handleCategoryChange(event.target.value)}
+        defaultValue={searchParams.get("category") ?? ""}
+        className="w-full cursor-pointer rounded-xl border border-white/20 bg-white/95 px-4 py-3 text-sm text-[#2f241f] shadow-sm outline-none transition focus:border-[#e1bd8c] focus:ring-2 focus:ring-[#e1bd8c]/30"
+      >
+        <option value="">All categories</option>
+
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
