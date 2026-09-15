@@ -31,79 +31,116 @@ export default async function Home({ searchParams }: HomeProps) {
   } else {
     cocktails = await getCocktails(searchTerm ?? "margarita");
   }
+
   return (
     <main className="min-h-screen bg-[#f6f1e8]">
       <Header />
+
+      {/* HERO */}
       <section
-        className="relative min-h-[360px] bg-cover bg-center"
+        className="relative min-h-[430px] bg-cover bg-center"
         style={{ backgroundImage: "url('/hotel-bar.avif')" }}
       >
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20" />
 
-        <div className="relative mx-auto flex min-h-[360px] max-w-4xl flex-col justify-center px-6 py-10 sm:px-8">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#d9b98c]">
-            The Cocktail Edit
-          </p>
+        <div className="relative mx-auto flex min-h-[430px] max-w-5xl items-center px-6 pb-12 pt-24 sm:px-8">
+          <div className="w-full max-w-2xl">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-[#d8a95b]" />
 
-          <h1 className="max-w-xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Find your next favourite cocktail.
-          </h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#e8bd73] [text-shadow:0_2px_8px_rgba(0,0,0,0.5)]">
+                Curated cocktails
+              </p>
+            </div>
 
-          <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-200 sm:text-base">
-            Discover classic favourites, modern mixes and inspiration for your
-            next evening.
-          </p>
+            <h1 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight text-white [text-shadow:0_3px_18px_rgba(0,0,0,0.55)] sm:text-5xl">
+              Find your next
+              <br />
+              favourite cocktail.
+            </h1>
 
-          <div className="mt-6 max-w-2xl rounded-2xl border border-white/20 bg-black/25 p-4 shadow-xl backdrop-blur-sm">
-            <SearchBar />
+            <p className="mt-4 max-w-lg text-sm leading-6 text-white/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.45)] sm:text-base">
+              Discover timeless classics, modern favourites and something new
+              for your next evening.
+            </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-3">
-                <CategoryFilter categories={categories} />
+            <div className="mt-7 max-w-2xl rounded-2xl border border-[#d8a95b]/35 bg-[#21150f]/75 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.38)] backdrop-blur-md">
+              <SearchBar />
 
-                <span className="hidden text-xs uppercase tracking-[0.15em] text-white/60 md:block">
-                  Browse by category
-                </span>
+              <div className="flex flex-col gap-3 border-t border-[#d8a95b]/20 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex-1">
+                  <CategoryFilter categories={categories} />
+                </div>
+
+                <RandomCocktailButton />
               </div>
-
-              <RandomCocktailButton />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="cocktails" className="mx-auto max-w-4xl px-6 py-10 sm:px-8">
-        <div className="mb-8 flex items-end justify-between border-b border-[#d8c9bb] pb-5">
+      {/* COCKTAIL COLLECTION */}
+      <section
+        id="cocktails"
+        className="mx-auto max-w-5xl px-6 py-14 sm:px-8 sm:py-16"
+      >
+        <div className="relative mb-10 flex flex-col gap-4 border-b border-[#c9a66b]/50 pb-7 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#8b5e4b]">
-              Explore
-            </p>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="h-px w-8 bg-[#b98a48]" />
 
-            <h2 className="text-3xl font-bold tracking-tight text-[#2f241f]">
-              Cocktails
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#9a6b54]">
+                The collection
+              </p>
+
+              <span className="h-px w-8 bg-[#b98a48]" />
+            </div>
+
+            <h2 className="text-3xl font-semibold tracking-tight text-[#2f241f] [text-shadow:0_2px_12px_rgba(93,63,43,0.12)] sm:text-4xl">
+              Explore cocktails
             </h2>
           </div>
 
-          <p className="hidden max-w-xs text-right text-sm leading-6 text-[#76665c] sm:block">
-            Discover timeless classics and find something new for your next
-            evening.
+          <p className="max-w-sm text-sm leading-6 text-[#76665c] sm:text-right">
+            From familiar favourites to something unexpected. Pick a cocktail
+            and discover the recipe.
           </p>
         </div>
 
         {cocktails.length > 0 ? (
           <CocktailGrid cocktails={cocktails} />
         ) : (
-          <div className="rounded-2xl border border-[#d8c9bb] bg-[#fffaf3] px-6 py-10 text-center shadow-sm">
-            <h2 className="mb-2 text-xl font-semibold text-[#2f241f]">
+          <div className="rounded-2xl border border-[#c9a66b]/40 bg-[#fffaf3] px-6 py-12 text-center shadow-[0_8px_25px_rgba(74,52,38,0.08)]">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#a87938]">
+              No results
+            </p>
+
+            <h2 className="text-xl font-semibold text-[#2f241f]">
               No cocktails found
             </h2>
 
-            <p className="text-[#76665c]">
+            <p className="mt-2 text-sm text-[#76665c]">
               Try another search or choose a different category.
             </p>
           </div>
         )}
       </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-[#d8a95b]/30 bg-[#2f241f] shadow-[0_-8px_30px_rgba(47,36,31,0.08)]">
+        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="flex items-center gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#e8bd73]">
+              The Cocktail Edit
+            </p>
+
+            <span className="hidden h-px w-10 bg-[#d8a95b]/60 sm:block" />
+          </div>
+
+          <p className="text-xs text-white/50">Discover. Mix. Enjoy.</p>
+        </div>
+      </footer>
     </main>
   );
 }
